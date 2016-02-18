@@ -12,16 +12,10 @@
 */
 
 Route::get('/', function () {
-
-	dd('HOME');
     return view('welcome');
 });
 
-Route::get('/login', function() {
-		dd('LOGIN');
 
-	return view('cms.login');
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +28,20 @@ Route::get('/login', function() {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
+Route::group(['middleware' => ['web', 'auth'] ], function () {
+    
+    Route::get('clients', 'ClientController@index');
+    Route::get('clients/{id}', 'ClientController@show');
+
+
+	// Authentication routes...
+	Route::get('signin', 'Auth\AuthController@getLogin');
+	Route::post('signin', 'Auth\AuthController@postLogin');
+	Route::get('signout', 'Auth\AuthController@getLogout');
+
+	// Registration routes...
+	Route::get('signup', 'Auth\AuthController@getRegister');
+	Route::post('signup', 'Auth\AuthController@postRegister');
 });
 
 /* Middelware to filter Access to the CMS only login users*/

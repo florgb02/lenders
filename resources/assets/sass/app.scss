@@ -1,2 +1,18 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+h1{
+	font-size: 30px;
+    text-transform: capitalize;
+}
+
+.panel-default{
+	border:none;
+
+	.panel-heading{
+		background: none;
+   		border: none;
+	}
+
+}
+
 
